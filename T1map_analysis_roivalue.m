@@ -13,14 +13,14 @@ tmr = zeros(10,384,192);      %tumor with index value
 %tmr_ave = zeros(10);      %average index value of tumor
 
 for i=1:10
-    total_raw = sprintf('MRImF%02d.nrrd', i);
-    tmr_fname = sprintf('MRImF%02d_tumor-label.nrrd', i);
+    total_raw = sprintf('MRIm%02d.nrrd', i);
+    tmr_fname = sprintf('MRIm%02d_tumor-label.nrrd', i);
     %total_raw = sprintf('MRImF02.nrrd');
 
     %tmr_fname = sprintf('MRImF02_tumor-label.nrrd');
     if exist(tmr_fname,'file')
         [total,total_info] = nrrdread2(total_raw);
-        imshow(total);
+        imshow(total,[0 max(max(total))-5000]);
         [tmr_mask,tmr_info] = nrrdread2(tmr_fname);
         imshow(tmr_mask);
         
@@ -33,10 +33,12 @@ for i=1:10
         tmr_sum(i) = sum(sum(sum(tmr)));
         tmr_ave(i) = tmr_sum(i)/tmr_vol(i);
         
+        xdata(i) = i;
     else
-        fprintf('Folder %02d not found!!', i);
+        fprintf('Folder %02d not found!!;', i);
     end
-
-
 end
 
+xdata = nonzeros(xdata);
+tmr_ave = nonzeros(tmr_ave);
+plot(xdata(:),tmr_ave(:),'bo-');

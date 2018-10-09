@@ -11,7 +11,7 @@ close all;
 %dirname=uigetdir; % location of dicom files
 dirname = '\Users\jihun\Documents\MATLAB\BioDistribution\JihunAnalysis\Input\T1map\EstimatedFromT1WI';
 
-animalnum = 3; %Chage this number accordingly!
+animalnum = 1;
 parameter = strcat('T1_dynamic_M',num2str(animalnum),'.mat');
 load(parameter)
 
@@ -53,7 +53,7 @@ for num=1:5
     out(num) = (values(:,:,1));
 end
 xlswrite(strcat('\ROI_values_M',num2str(animalnum),'.xlsx'),out(:));
-save(strcat('T1map_ROI_tumor_M',num2str(animalnum),'.mat'),'out');
+save(strcat('T1map_ROI_M',num2str(animalnum),'.mat'),'out');
 
 %draw average T1
 figure
@@ -68,6 +68,6 @@ out_rel = (out(1)-out(:))./out(1)*100;
 figure
 plot(1:5,out_rel(:),'bo-');
 xlabel('Time Points');
-ylabel('Relative change(%)');
+ylabel('Relatice change(%)');
 title('Relative Change of T1 value(%)');
-saveas(gcf,strcat('T1map_roi_relative_tumor_M',num2str(animalnum),'.pdf'));
+saveas(gcf,strcat('T1map_roi_relative_tumor',num2str(animalnum),'.pdf'));
