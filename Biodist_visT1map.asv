@@ -10,7 +10,7 @@ figure(3); clf('reset'); set(gca,'Position',[440   378   560   420]);
 
 margins = [.007 .007];
 cb_range = [0 2000];
-cb_inv_range = [400 2600]; %tumor window:[1400 2600];
+cb_inv_range = [1400 2600]; %tumor window:[1400 2600];
 flip_cb = flipud(jet);
 flip_cb(1,:)=0;
 
@@ -18,7 +18,7 @@ flip_cb(1,:)=0;
 z_pre = 1; %M1:1,M3:3
 z_15m = 1; %M1:1,M3:2
 z_1h  = 1; %M1:1,M3:2
-z_5h  = 1; %M1:1,M3:3
+z_5h  = 3; %M1:1,M3:3
 z_24h = 2; %M1:2,M3:2
 
 %% Whole Volume
